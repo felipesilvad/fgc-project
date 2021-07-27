@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../../firebase';
-import Options from './Options';
+import firebase from '../../../firebase';
+import Options from '../Options';
 import moment from 'moment';
 
 function useRegions() {
@@ -44,7 +44,7 @@ function useSeries() {
 }
 
 
-const AddTournament = ({game_title, game_slug}) => {
+const AddTournament = () => {
   const regions = useRegions();
   const series = useSeries();
   // const games = useGames();
@@ -57,12 +57,11 @@ const AddTournament = ({game_title, game_slug}) => {
   const [endDate, setEndDate] = useState('');
   const [smashgg, setSmashgg] = useState('');
 
-  console.log('title', game_title)
 
   function onSubmit(e) {
     e.preventDefault()
 
-    const tournamentsRef = firebase.firestore().collection('games').doc(game_title).collection('Tournaments');
+    const tournamentsRef = firebase.firestore().collection('games').doc('Street Fighter V').collection('Tournaments');
 
     tournamentsRef.add({
       title, serie, location, smashgg,

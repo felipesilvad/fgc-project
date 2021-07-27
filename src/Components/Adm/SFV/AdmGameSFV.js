@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../../firebase';
+import firebase from '../../../firebase';
 import AddTournament from './AddTournament';
 import TournamentList from './TournamentList';
 
-const AdmGame = ({match}) => {
-  const gameRef = firebase.firestore().collection('games').where("slug", "==", match.params.slug)
+const AdmGameSFV = ({match}) => {
+  const gameRef = firebase.firestore().collection('games').doc('Street Fighter V')
   const [game, setGame] = useState('');
 
   useEffect(() => {
-    gameRef.get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            const newGame = doc.data();
-            setGame(newGame)
-        });
+    gameRef.get().then((game) => {
+      const newGame = game.data();
+      setGame(newGame)
     })
   }, [])
-
-  
 
   return(
     <div>
       <hr/>
-      <h3>AdmGame</h3>
+      <h3>AdmGameSFV</h3>
       <h1>{game.title}</h1>
       <AddTournament 
         game_title={game.title}
@@ -36,4 +31,4 @@ const AdmGame = ({match}) => {
   )
 }
 
-export default AdmGame;
+export default AdmGameSFV;

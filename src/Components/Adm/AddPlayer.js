@@ -32,7 +32,7 @@ const AddPlayer = () => {
   const handleChangeIcon = async (e) => {
     if (e.target.files[0]) {
       const icon = e.target.files[0]
-      const imgRef = storage.ref("images/DRPG/characters");
+      const imgRef = storage.ref("players");
       const iconRef = imgRef.child(`${title}_icon`)
       await iconRef.put(icon)
       const playerRef = firebase.firestore().collection('Players');

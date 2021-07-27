@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../../firebase';
+import firebase from '../../../firebase';
 import {Link} from 'react-router-dom';
 
   const TournamentsList = ({game_title, game_slug}) => {
@@ -30,7 +30,7 @@ import {Link} from 'react-router-dom';
         <div>
           {tournaments.map((tournament) => (
             <li key={tournament.id}>
-              <Link to={`/adm/${game_slug}/${tournament.id}`}>{tournament.title}</Link>
+              <Link to={`/adm/SFV/${tournament.id}`}>{tournament.title}</Link>
             </li>
           ))}
         </div>

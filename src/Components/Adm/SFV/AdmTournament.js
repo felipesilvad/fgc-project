@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../../firebase';
+import firebase from '../../../firebase';
 import AddMatch from './AddMatch';
 
 const AdmTournament = ({match}) => {
-  const gameRef = firebase.firestore().collection('games').where("slug", "==", match.params.slug)
+  const gameRef = firebase.firestore().collection('games').doc('Street Fighter V')
   const [game, setGame] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const AdmTournament = ({match}) => {
     }
   }, [])
 
-  const tournamentRef = firebase.firestore().collection('games').doc('Street Fighter V').collection('Tournaments').doc(match.params.tournament)
+  const tournamentRef = firebase.firestore().collection('games').doc('Street Fighter V').collection('Tournaments').doc(match.params.id)
   const [tournament, setTournament] = useState('');
 
   useEffect(() => {
@@ -28,12 +28,16 @@ const AdmTournament = ({match}) => {
     })
   }, [])
 
+  
+
   return(
     <div>
       <hr/>
       <h3>AdmTournament</h3>
       <h1>{tournament.title}</h1>
-      <AddMatch tournament={tournament.id} />
+      <AddMatch 
+        tournament_id={match.params.id}
+      />
     </div>
   )
 }
