@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {storage} from '../../firebase';
+import firebase, {storage} from '../firebase';
 import Options from './Options';
 
 function useRegions() {
@@ -26,6 +26,7 @@ const AddPlayer = () => {
   const regions = useRegions();
   
   const [title, setTitle] = useState('');
+  const [title2, setTitle2] = useState('');
   const [twitter, setTwitter] = useState('');
   const [region, setRegion] = useState('');
 
@@ -38,7 +39,7 @@ const AddPlayer = () => {
       const playerRef = firebase.firestore().collection('Players');
       await iconRef.getDownloadURL().then((icon_url) => {
         playerRef.add({
-          title, twitter, region, icon_url
+          title, title2, twitter, region, icon_url
         })
       })
     }
@@ -50,7 +51,7 @@ const AddPlayer = () => {
     const playerRef = firebase.firestore().collection('Players');
 
     playerRef.add({
-      title, twitter, region
+      title, title2, twitter, region
     })
 
   }
@@ -61,6 +62,9 @@ const AddPlayer = () => {
         <label><h4 id="stat">Add Player</h4></label>
           <input type="text" name="title" placeholder="Title"
             onChange={e => setTitle(e.currentTarget.value)}
+          />
+          <input type="text" name="title" placeholder="Title2"
+            onChange={e => setTitle2(e.currentTarget.value)}
           />
           <input type="text" name="Twitter" placeholder="Twitter"
             onChange={e => setTwitter(e.currentTarget.value)}

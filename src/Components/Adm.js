@@ -7,7 +7,7 @@ function Adm() {
   return (
     <div>
       <AddRegion />
-      <AddTeam />
+      {/* <AddTeam /> */}
       <AddPlayer />
       <AddSeries />      
     </div>

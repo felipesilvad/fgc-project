@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../../firebase';
-import Options from '../Options';
+import Options from '../../Options';
 import moment from 'moment';
 
 function useRegions() {
@@ -47,24 +47,25 @@ function useSeries() {
 const AddTournament = () => {
   const regions = useRegions();
   const series = useSeries();
-  // const games = useGames();
 
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [serie, setSerie] = useState('');
-  const [game, setGame] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [smashgg, setSmashgg] = useState('');
+  const [type, setType] = useState('');
+  const [format, setFormat] = useState('');
 
 
   function onSubmit(e) {
     e.preventDefault()
 
-    const tournamentsRef = firebase.firestore().collection('games').doc('Street Fighter V').collection('Tournaments');
+    const tournamentsRef = firebase.firestore().collection('games').doc('Street Fighter V')
+      .collection('Tournaments');
 
     tournamentsRef.add({
-      title, serie, location, smashgg,
+      title, serie, location, smashgg, type, format,
       start_date: firebase.firestore.Timestamp.fromDate(new Date(moment(startDate).format('MMMM D YYYY'))),
       end_date: firebase.firestore.Timestamp.fromDate(new Date(moment(endDate).format('MMMM D YYYY')))
     })
@@ -102,18 +103,6 @@ const AddTournament = () => {
               />
             ))}
           </select>
-          {/* Game
-          <select name="Game" id="Game"
-            onChange={e => setGame(e.currentTarget.value)}
-          >
-            <option value=""></option>
-            {games.map((game) => (
-              <Options
-                id={game.id}
-                title={game.title}
-              />
-            ))}
-          </select> */}
           Start Date
           <input type="date" onChange={e => setStartDate(e.currentTarget.value)} />
           End Date
@@ -123,15 +112,15 @@ const AddTournament = () => {
               onChange={e => setSmashgg(e.currentTarget.value)}
             />
             Type
-            <select name="Game" id="Game"
-              onChange={e => setGame(e.currentTarget.value)}
+            <select name="Type" id="Type"
+              onChange={e => setType(e.currentTarget.value)}
             >
               <option value=""></option>
               <option value="Online">Online</option>
             </select>
             Format
-            <select name="Game" id="Game"
-              onChange={e => setGame(e.currentTarget.value)}
+            <select name="Format" id="Format"
+              onChange={e => setFormat(e.currentTarget.value)}
             >
               <option value=""></option>
               <option value="Double-elimination">Double-elimination</option>
