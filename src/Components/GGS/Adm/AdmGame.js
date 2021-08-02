@@ -4,7 +4,7 @@ import AddTournament from './AddTournament';
 import TournamentList from './TournamentList';
 
 const AdmGame = ({match}) => {
-  const gameRef = firebase.firestore().collection('games').doc('Street Fighter V')
+  const gameRef = firebase.firestore().collection('games').doc('Guilty Gear Strive')
   const [game, setGame] = useState('');
 
   useEffect(() => {

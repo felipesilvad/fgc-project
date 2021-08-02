@@ -25,12 +25,12 @@ import {Link} from 'react-router-dom';
   
   return (
     <div>
-      <h4>Tournament List{game_title}</h4>
+      <h4>Tournament List {game_title}</h4>
       {!! tournaments &&(
         <div>
           {tournaments.map((tournament) => (
             <li key={tournament.id}>
-              <Link to={`/SFV/adm/${tournament.id}`}>{tournament.title}</Link>
+              <Link to={`/GGS/adm/${tournament.id}`}>{tournament.title}</Link>
             </li>
           ))}
         </div>

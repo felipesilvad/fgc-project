@@ -3,7 +3,7 @@ import firebase from '../../../firebase';
 import AddMatch from './AddMatch';
 
 const AdmTournament = ({match}) => {
-  const gameRef = firebase.firestore().collection('games').doc('Street Fighter V')
+  const gameRef = firebase.firestore().collection('games').doc('Guilty Gear Strive')
   const [game, setGame] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const AdmTournament = ({match}) => {
     }
   }, [])
 
-  const tournamentRef = firebase.firestore().collection('games').doc('Street Fighter V').collection('Tournaments').doc(match.params.id)
+  const tournamentRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Tournaments').doc(match.params.id)
   const [tournament, setTournament] = useState('');
 
   useEffect(() => {

@@ -10,7 +10,7 @@ function useCharacters() {
     const unsubscribe = firebase
       .firestore()
       .collection('games')
-      .doc('Street Fighter V')
+      .doc('Guilty Gear Strive')
       .collection('Characters')
       .onSnapshot((snapshot) => {
         const newCharacters = snapshot.docs.map((doc) => ({
