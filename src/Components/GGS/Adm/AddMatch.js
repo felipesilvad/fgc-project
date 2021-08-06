@@ -37,7 +37,7 @@ function useCharacters() {
       .collection('Characters')
       .onSnapshot((snapshot) => {
         const newCharacters = snapshot.docs.map((doc) => ({
-          value: doc.id, title: doc.data().title
+          value: doc.id, label: doc.data().title
         }))
 
         setCharacters(newCharacters)
@@ -51,6 +51,9 @@ function useCharacters() {
 const AddMatch = ({tournament_id}) => {
   const players = usePlayers();
   const characters = useCharacters();
+
+  console.log(players)
+  console.log(characters)
 
   const [type, setType] = useState('');
   const [videoID, setVideoID] = useState('');
@@ -87,6 +90,18 @@ const AddMatch = ({tournament_id}) => {
   const [S5Char1Result, setS5Char1Result] = useState('');
   const [S5Char2, setS5Char2] = useState('');
   const [S5Char2Result, setS5Char2Result] = useState('');
+
+  const [S6time, setS6Time] = useState('');
+  const [S6Char1, setS6Char1] = useState('');
+  const [S6Char1Result, setS6Char1Result] = useState('');
+  const [S6Char2, setS6Char2] = useState('');
+  const [S6Char2Result, setS6Char2Result] = useState('');
+
+  const [S7time, setS7Time] = useState('');
+  const [S7Char1, setS7Char1] = useState('');
+  const [S7Char1Result, setS7Char1Result] = useState('');
+  const [S7Char2, setS7Char2] = useState('');
+  const [S7Char2Result, setS7Char2Result] = useState('');
 
   const sets = []
   
@@ -258,9 +273,74 @@ const AddMatch = ({tournament_id}) => {
         })
       }
     }
+    if (S6time) {
+      if (S6Char1Result > S6Char2Result) {
+        sets.push({
+          "id": 6,
+          "h": S6time.split(':')[0],
+          "m": S6time.split(':')[1],
+          "s": S6time.split(':')[2],
+          "Char1": S6Char1,
+          "Char1Result": S6Char1Result,
+          "Char2": S6Char2,
+          "Char2Result": S6Char2Result,
+          "WChar": S6Char1,
+          "WPlayer": player1,
+          "LChar": S6Char2,
+          "LPlayer": player2,
+        })
+      } else {
+        sets.push({
+          "id": 5,
+          "h": S6time.split(':')[0],
+          "m": S6time.split(':')[1],
+          "s": S6time.split(':')[2],
+          "Char1": S6Char1,
+          "Char1Result": S6Char1Result,
+          "Char2": S6Char2,
+          "Char2Result": S6Char2Result,
+          "WChar": S6Char2,
+          "WPlayer": player2,
+          "LChar": S6Char1,
+          "LPlayer": player1,
+        })
+      }
+    }
+    if (S7time) {
+      if (S7Char1Result > S7Char2Result) {
+        sets.push({
+          "id": 7,
+          "h": S7time.split(':')[0],
+          "m": S7time.split(':')[1],
+          "s": S7time.split(':')[2],
+          "Char1": S7Char1,
+          "Char1Result": S7Char1Result,
+          "Char2": S7Char2,
+          "Char2Result": S7Char2Result,
+          "WChar": S7Char1,
+          "WPlayer": player1,
+          "LChar": S7Char2,
+          "LPlayer": player2,
+        })
+      } else {
+        sets.push({
+          "id": 5,
+          "h": S7time.split(':')[0],
+          "m": S7time.split(':')[1],
+          "s": S7time.split(':')[2],
+          "Char1": S7Char1,
+          "Char1Result": S7Char1Result,
+          "Char2": S7Char2,
+          "Char2Result": S7Char2Result,
+          "WChar": S7Char2,
+          "WPlayer": player2,
+          "LChar": S7Char1,
+          "LPlayer": player1,
+        })
+      }
+    }
 
-    const matchRef = firebase.firestore().collection('games').doc('Street Fighter V')
-      .collection('Matches');
+    const matchRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Matches');
 
     matchRef.add({
       type, player1, player2, sets, tournament_id, videoID,
@@ -281,6 +361,7 @@ const AddMatch = ({tournament_id}) => {
         >
           <option value=""></option>
           <option value="Pools">Pools</option>
+          <option value="Top 128">Top 128</option>
           <option value="Top 64">Top 64</option>
           <option value="Top 16">Top 16</option>
           <option value="Top 8">Top 8</option>
@@ -332,33 +413,19 @@ const AddMatch = ({tournament_id}) => {
           <Col md={5}>
             <div>
               <label>Char 1</label>
-              <select name="Char" id="Char1"
-                onChange={e => setS1Char1(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS1Char1(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
           <Col md={5}>
             <div>
               <label>Char 2</label>
-              <select name="Char" id="Char2"
-                onChange={e => setS1Char2(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS1Char2(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
         </Row>
@@ -388,33 +455,19 @@ const AddMatch = ({tournament_id}) => {
           <Col md={5}>
             <div>
               <label>Char 1</label>
-              <select name="Char" id="Char1"
-                onChange={e => setS2Char1(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS2Char1(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
           <Col md={5}>
             <div>
               <label>Char 2</label>
-              <select name="Char" id="Char2"
-                onChange={e => setS2Char2(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS2Char2(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
         </Row>
@@ -444,33 +497,19 @@ const AddMatch = ({tournament_id}) => {
           <Col md={5}>
             <div>
               <label>Char 1</label>
-              <select name="Char" id="Char1"
-                onChange={e => setS3Char1(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS3Char1(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
           <Col md={5}>
             <div>
               <label>Char 2</label>
-              <select name="Char" id="Char2"
-                onChange={e => setS3Char2(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS3Char2(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
         </Row>
@@ -500,33 +539,19 @@ const AddMatch = ({tournament_id}) => {
           <Col md={5}>
             <div>
               <label>Char 1</label>
-              <select name="Char" id="Char1"
-                onChange={e => setS4Char1(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS4Char1(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
           <Col md={5}>
             <div>
               <label>Char 2</label>
-              <select name="Char" id="Char2"
-                onChange={e => setS4Char2(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS4Char2(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
         </Row>
@@ -556,33 +581,103 @@ const AddMatch = ({tournament_id}) => {
           <Col md={5}>
             <div>
               <label>Char 1</label>
-              <select name="Char" id="Char1"
-                onChange={e => setS5Char1(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS5Char1(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
           <Col md={5}>
             <div>
               <label>Char 2</label>
-              <select name="Char" id="Char2"
-                onChange={e => setS5Char2(e.currentTarget.value)}
-              >
-                <option value=""></option>
-                {characters.map((char) => (
-                  <Options
-                    id={char.id}
-                    title={char.title}
-                  />
-                ))}
-              </select>
+              <Select 
+                options={characters} onChange={e => setS5Char2(e.value)}
+                className="Selector" isSearchable
+              />
+            </div>
+          </Col>
+        </Row>
+
+        <Row className="add-set" id="set5">
+          <label>SET 6</label>
+          <Col md={2}>
+            <input type="text" name="time" placeholder="Time" 
+              onChange={e => setS6Time(e.currentTarget.value)}
+              style={{width: '-webkit-fill-available'}}
+            />  
+            <div>
+              <label>Results</label>
+              <div className="d-flex">
+                <a>Char1</a>
+                <input type="number" name="vt" min="0" onChange={e => setS6Char1Result(e.currentTarget.value)}
+                  style={{width: '-webkit-fill-available'}}
+                />
+              </div>
+              <div className="d-flex">
+                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS6Char2Result(e.currentTarget.value)}
+                  style={{width: '-webkit-fill-available'}}
+                />
+              </div>
+            </div>
+          </Col>
+          <Col md={5}>
+            <div>
+              <label>Char 1</label>
+              <Select 
+                options={characters} onChange={e => setS6Char1(e.value)}
+                className="Selector" isSearchable
+              />
+            </div>
+          </Col>
+          <Col md={5}>
+            <div>
+              <label>Char 2</label>
+              <Select 
+                options={characters} onChange={e => setS6Char2(e.value)}
+                className="Selector" isSearchable
+              />
+            </div>
+          </Col>
+        </Row>
+
+        <Row className="add-set" id="set5">
+          <label>SET 7</label>
+          <Col md={2}>
+            <input type="text" name="time" placeholder="Time" 
+              onChange={e => setS7Time(e.currentTarget.value)}
+              style={{width: '-webkit-fill-available'}}
+            />  
+            <div>
+              <label>Results</label>
+              <div className="d-flex">
+                <a>Char1</a>
+                <input type="number" name="vt" min="0" onChange={e => setS7Char1Result(e.currentTarget.value)}
+                  style={{width: '-webkit-fill-available'}}
+                />
+              </div>
+              <div className="d-flex">
+                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS7Char2Result(e.currentTarget.value)}
+                  style={{width: '-webkit-fill-available'}}
+                />
+              </div>
+            </div>
+          </Col>
+          <Col md={5}>
+            <div>
+              <label>Char 1</label>
+              <Select 
+                options={characters} onChange={e => setS7Char1(e.value)}
+                className="Selector" isSearchable
+              />
+            </div>
+          </Col>
+          <Col md={5}>
+            <div>
+              <label>Char 2</label>
+              <Select 
+                options={characters} onChange={e => setS7Char2(e.value)}
+                className="Selector" isSearchable
+              />
             </div>
           </Col>
         </Row>

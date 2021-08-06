@@ -11,7 +11,7 @@ function useMatches() {
     const unsubscribe = firebase
       .firestore()
       .collection('games')
-      .doc('Street Fighter V')
+      .doc('Guilty Gear Strive')
       .collection('Matches')
       .onSnapshot((snapshot) => {
         const newMatches = snapshot.docs.map((doc) => ({
@@ -34,7 +34,7 @@ function useCharacters() {
     const unsubscribe = firebase
       .firestore()
       .collection('games')
-      .doc('Street Fighter V')
+      .doc('Guilty Gear Strive')
       .collection('Characters')
       .onSnapshot((snapshot) => {
         const newCharacters = snapshot.docs.map((doc) => ({
@@ -54,12 +54,15 @@ const MatchDetail = ({match}) => {
   const matches = useMatches();
   const characters = useCharacters();
 
-  const CharacterRef = firebase.firestore().collection('games').doc('Street Fighter V').collection('Characters').doc(match.params.id);
+  const CharacterRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Characters').doc(match.params.id);
   const [character, setCharacter] = useState('');
 
   useEffect(() => {
-    CharacterRef.get().then((Character) => {
-      const newCharacter = Character.data();
+    CharacterRef.get().then((doc) => {
+      const newCharacter = {
+        id: doc.id,
+        ...doc.data()
+      };
       setCharacter(newCharacter)
     })
   }, [])
@@ -67,16 +70,16 @@ const MatchDetail = ({match}) => {
   const CharWins = []
   const CharMatches = []
 
-  if (character.name) {
+  if (character.id) {
     matches.forEach((singleMatch) => {
       singleMatch.sets.forEach((set) => {
-        if (set.Char1 === character.name) {
+        if (set.Char1 === character.id) {
           CharMatches.push(set)
         }
-        if (set.Char2 === character.name) {
+        if (set.Char2 === character.id) {
           CharMatches.push(set)
         }
-        if (set.WChar === character.name) {
+        if (set.WChar === character.id) {
           CharWins.push(set)
         }
       })
@@ -89,39 +92,39 @@ const MatchDetail = ({match}) => {
   
   return (
     <Container >
-      {character.name}
+      {character.id}
       <Image src={character.img}/>
       <h3>{CharWinRate}%</h3><h5>Total Matches: {CharMatches.length} Wins: {CharWins.length}</h5>
 
       <Table striped bordered hover variant="dark">
         <tbody>
           {!! characters &&(characters.map((char) => (
-            (character.name !== char.name) ? (
+            (character.id !== char.id) ? (
               <tr className="p-0">
-                <td className="p-0"><Image className="char-icon" src={char.img} />{char.name}</td>
+                <td className="p-0"><Image className="char-icon" src={char.img} />{char.title}</td>
                 <td>
                   {Math.round(((
                       CharWins.filter( x => 
-                        x.LChar === char.name
+                        x.LChar === char.id
                       ).length 
                       /
                       CharMatches.filter( x => 
-                        x.Char1 === char.name ||
-                        x.Char2 === char.name
+                        x.Char1 === char.id ||
+                        x.Char2 === char.id
                       ).length
                     ) * 100 + Number.EPSILON) * 100) / 100
                   }%
                 </td>
                 <td>
                   {CharWins.filter( x => 
-                      x.LChar === char.name
+                      x.LChar === char.id
                     ).length
                   }
                 </td>
                 <td>
                   {CharMatches.filter( x => 
-                      x.Char1 === char.name ||
-                      x.Char2 === char.name
+                      x.Char1 === char.id ||
+                      x.Char2 === char.id
                     ).length
                   }
                 </td>

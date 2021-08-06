@@ -28,6 +28,7 @@ const AddPlayer = () => {
   const [title, setTitle] = useState('');
   const [title2, setTitle2] = useState('');
   const [twitter, setTwitter] = useState('');
+  const [twitch, setTwitch] = useState('');
   const [region, setRegion] = useState('');
 
   const handleChangeIcon = async (e) => {
@@ -51,7 +52,7 @@ const AddPlayer = () => {
     const playerRef = firebase.firestore().collection('Players');
 
     playerRef.add({
-      title, title2, twitter, region
+      title, title2, twitter, twitch, region
     })
 
   }
@@ -68,6 +69,9 @@ const AddPlayer = () => {
           />
           <input type="text" name="Twitter" placeholder="Twitter"
             onChange={e => setTwitter(e.currentTarget.value)}
+          />
+          <input type="text" name="Twitch" placeholder="Twitch"
+            onChange={e => setTwitch(e.currentTarget.value)}
           />
           Region
           <select name="Region" id="Region"

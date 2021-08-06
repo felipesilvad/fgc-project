@@ -5,6 +5,13 @@ html {
 
 body {
   font-size: 1.5rem;
+  background-color: $dark;
+  color: $dark-white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 label {
@@ -12,4 +19,12 @@ label {
 }
 .p-0 {
   padding: 0;
+}
+
+.Selector {
+  color: black;
+}
+
+.bg-color {
+  background-color: $highlight;
 }

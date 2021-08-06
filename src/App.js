@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Adm from './Components/Adm';
+import Test from './Components/Test';
 import SFV from './Components/SFV/SFV';
 import GGS from './Components/GGS/GGS';
 import MatchDetail from './Components/SFV/Detail/MatchDetail';
@@ -16,6 +17,7 @@ export default class App extends PureComponent {
           <GGS />
           <Route path="/SFV/adm" component={Adm}/>
           <Route path="/GGS/adm" component={Adm}/>
+          <Route path="/GGS/test" component={Test}/>
         </Container>
       </Router>
     )

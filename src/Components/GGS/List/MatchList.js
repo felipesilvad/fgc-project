@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../../../firebase';
 import {Link} from 'react-router-dom';
 import MatchListPlayer from './MatchListPlayer';
+import MatchListChar from './MatchListChar';
 
 function useMatch() {
   const [match, setMatch] = useState([])
@@ -10,7 +11,7 @@ function useMatch() {
     const unsubscribe = firebase
       .firestore()
       .collection('games')
-      .doc('Street Fighter V')
+      .doc('Guilty Gear Strive')
       .collection('Matches')
       .onSnapshot((snapshot) => {
         const newMatch = snapshot.docs.map((doc) => ({
@@ -31,21 +32,16 @@ const MatchList = () => {
 
   return (
     <div>
-      <h4>Match List</h4>
+      <h4>Match List</h4>s
       {matchesGame.map((matchGame) => (
-        <Link to={`/SFV/vods/${matchGame.id}`}>
+        <Link to={`/GGS/vods/${matchGame.id}`}>
           <div className="add-set p-3">
             <div class="d-flex justify-content-between">
               <MatchListPlayer id={matchGame.player1} />
               <MatchListPlayer id={matchGame.player2} />
             </div>
             {matchGame.sets.map((set) => (
-              <>
-                <div class="d-flex justify-content-between">
-                  <a>{set.Char1}</a>
-                  <a>{set.Char2}</a>
-                </div>
-              </>
+              <MatchListChar id1={set.Char1} id2={set.Char2}/>
             ))}
           </div>
         </Link>
