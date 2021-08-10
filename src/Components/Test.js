@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import { version } from '../../package.json'
 import ReactPlayer from 'react-player'
 
 class Test extends Component {
