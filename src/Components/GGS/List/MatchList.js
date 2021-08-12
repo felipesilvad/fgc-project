@@ -32,7 +32,7 @@ const MatchList = () => {
 
   return (
     <div>
-      <h4>Match List</h4>s
+      <h4>Match List</h4>
       {matchesGame.map((matchGame) => (
         <Link to={`/GGS/vods/${matchGame.id}`}>
           <div className="add-set p-3">
@@ -41,7 +41,11 @@ const MatchList = () => {
               <MatchListPlayer id={matchGame.player2} />
             </div>
             {matchGame.sets.map((set) => (
-              <MatchListChar id1={set.Char1} id2={set.Char2}/>
+              <>
+                {(set.Char1 && set.Char2) ? (
+                  <MatchListChar id1={set.Char1} id2={set.Char2} />
+                ) : ('error')}
+              </>
             ))}
           </div>
         </Link>

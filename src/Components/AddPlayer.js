@@ -85,8 +85,8 @@ const AddPlayer = () => {
               />
             ))}
           </select>
-          <label>Icon</label>
-          <input type="file" onChange={handleChangeIcon} />
+          {/* <label>Icon</label>
+          <input type="file" onChange={handleChangeIcon} /> */}
         <button className="button add-button">No Icon</button>
       </form>
     </div>
