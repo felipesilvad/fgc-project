@@ -363,10 +363,12 @@ const AddMatch = ({tournament_id}) => {
           <option value="Pools">Pools</option>
           <option value="Top 128">Top 128</option>
           <option value="Top 64">Top 64</option>
+          <option value="Top 48">Top 48</option>
           <option value="Top 32">Top 32</option>
           <option value="Top 16">Top 16</option>
           <option value="Top 8">Top 8</option>
           <option value="Winners Final">Winners Final</option>
+          <option value="Losers Semi-Final">Losers Semi-Final</option>
           <option value="Losers Final">Losers Final</option>
           <option value="Grand Final">Grand Final</option>
           <option value="Grand Final Reset">Grand Final Reset</option>
@@ -400,12 +402,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS1Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS1Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS1Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS1Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
@@ -442,12 +444,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS2Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS2Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS2Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS2Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
@@ -484,12 +486,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS3Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS3Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS3Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS3Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
@@ -526,12 +528,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS4Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS4Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS4Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS4Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
@@ -568,12 +570,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS5Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS5Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS5Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS5Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
@@ -610,12 +612,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS6Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS6Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS6Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS6Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
@@ -652,12 +654,12 @@ const AddMatch = ({tournament_id}) => {
               <label>Results</label>
               <div className="d-flex">
                 <a>Char1</a>
-                <input type="number" name="vt" min="0" onChange={e => setS7Char1Result(e.currentTarget.value)}
+                <input type="number" name="vt" min="0" max="2" onChange={e => setS7Char1Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>
               <div className="d-flex">
-                <a>Char2</a><input type="number" name="vt" min="0" onChange={e => setS7Char2Result(e.currentTarget.value)}
+                <a>Char2</a><input type="number" name="vt" min="0" max="2" onChange={e => setS7Char2Result(e.currentTarget.value)}
                   style={{width: '-webkit-fill-available'}}
                 />
               </div>

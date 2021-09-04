@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import ReactPlayer from 'react-player'
 import firebase from '../../../firebase';
-import MatchListPlayer from '../List/MatchListPlayer'
 import {Container, Image, Table} from 'react-bootstrap';
 
 function useMatches() {

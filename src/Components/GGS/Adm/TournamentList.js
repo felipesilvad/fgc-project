@@ -13,13 +13,6 @@ import {Link} from 'react-router-dom';
       ...doc.data()
     }))
     setTournaments(newTournaments)
-    // querySnapshot.forEach((doc) => {
-    //     tournaments = {
-    //       id: doc.id,
-    //       ...doc.data()
-    //     }
-    //     console.log(doc.id, " => ", doc.data());
-    // });
   });
 
   
@@ -30,7 +23,7 @@ import {Link} from 'react-router-dom';
         <div>
           {tournaments.map((tournament) => (
             <li key={tournament.id}>
-              <Link to={`/GGS/adm/${tournament.id}`}>{tournament.title}</Link>
+              <Link to={`/GGS/adm/tournaments/${tournament.id}`}>{tournament.title}</Link>
             </li>
           ))}
         </div>

@@ -19,10 +19,6 @@ const AdmGame = ({match}) => {
       <hr/>
       <h3>AdmGame</h3>
       <h1>{game.title}</h1>
-      <AddTournament 
-        game_title={game.title}
-        game_slug={game.slug}
-      />
       <TournamentList
         game_title={game.title}
         game_slug={game.slug}

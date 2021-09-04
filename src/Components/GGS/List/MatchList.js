@@ -36,17 +36,13 @@ const MatchList = () => {
       {matchesGame.map((matchGame) => (
         <Link to={`/GGS/vods/${matchGame.id}`}>
           <div className="add-set p-3">
-            <div class="d-flex justify-content-between">
-              <MatchListPlayer id={matchGame.player1} />
-              <MatchListPlayer id={matchGame.player2} />
+            <div class="text-center">
+              {matchGame.tournament_id}
+              <br/>
+              {matchGame.type}
             </div>
-            {matchGame.sets.map((set) => (
-              <>
-                {(set.Char1 && set.Char2) ? (
-                  <MatchListChar id1={set.Char1} id2={set.Char2} />
-                ) : ('error')}
-              </>
-            ))}
+            <MatchListPlayer id1={matchGame.player1} id2={matchGame.player2}/>
+            <MatchListChar id1={matchGame.sets[0].Char1} id2={matchGame.sets[0].Char2} />
           </div>
         </Link>
       ))}
