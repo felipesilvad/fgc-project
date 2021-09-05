@@ -65,3 +65,47 @@
   background-color: $highlight;
   border-radius: 10px;
 }
+
+.vods-overflow {
+  height: 100vh;
+  overflow: auto;
+}
+
+.vods-overflow::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: #F5F5F5;
+}
+
+.vods-overflow::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: $highlight;
+  border-radius: 10px;
+}
+
+.match_sets {
+  background-color: $light;
+  margin: 0rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.match_sets:hover {
+  background-color: lighten($light, 8%);
+}
+
+.set-txt{
+  letter-spacing: -1px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  // transform: rotate(-90deg);
+  text-align: center;
+  margin: auto;
+}
+
+.set-bg {
+  background-color: $highlight;
+  border-radius: 0 1rem 1rem 0;
+}

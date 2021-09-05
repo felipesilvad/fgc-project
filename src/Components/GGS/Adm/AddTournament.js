@@ -54,6 +54,7 @@ const AddTournament = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [smashgg, setSmashgg] = useState('');
+  const [tonamel, setTonamel] = useState('');
   const [type, setType] = useState('');
   const [format, setFormat] = useState('');
   const [entrants, setEntrants] = useState('');
@@ -63,7 +64,7 @@ const AddTournament = () => {
 
     const tournamentsRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Tournaments')
     tournamentsRef.add({
-      title, serie, location, smashgg, type, format, entrants,
+      title, serie, location, smashgg, tonamel, type, format, entrants,
       start_date: firebase.firestore.Timestamp.fromDate(new Date(moment(startDate).format('MMMM D YYYY'))),
       end_date: firebase.firestore.Timestamp.fromDate(new Date(moment(endDate).format('MMMM D YYYY')))
     })
@@ -110,6 +111,9 @@ const AddTournament = () => {
           <p>
             <input type="text" name="Smashgg" placeholder="Smashgg"
               onChange={e => setSmashgg(e.currentTarget.value)}
+            />
+            <input type="text" name="Tonamel" placeholder="Tonamel"
+              onChange={e => setTonamel(e.currentTarget.value)}
             />
             Type
             <select name="Type" id="Type"

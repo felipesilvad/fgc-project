@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../../firebase';
 import Select from 'react-select'
-import Options from '../../Options';
 import { Row, Col } from 'react-bootstrap';
 import moment from 'moment';
 
@@ -52,11 +51,9 @@ const AddMatch = ({tournament_id}) => {
   const players = usePlayers();
   const characters = useCharacters();
 
-  console.log(players)
-  console.log(characters)
-
   const [type, setType] = useState('');
   const [videoID, setVideoID] = useState('');
+  const [videoType, setVideoType] = useState('Twitch');
   const [date, setDate] = useState('');
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
@@ -343,7 +340,7 @@ const AddMatch = ({tournament_id}) => {
     const matchRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Matches');
 
     matchRef.add({
-      type, player1, player2, sets, tournament_id, videoID,
+      type, player1, player2, sets, tournament_id, videoID, videoType,
       date: firebase.firestore.Timestamp.fromDate(new Date(moment(date).format('MMMM D YYYY'))),
     })
 
@@ -373,7 +370,12 @@ const AddMatch = ({tournament_id}) => {
           <option value="Grand Final">Grand Final</option>
           <option value="Grand Final Reset">Grand Final Reset</option>
         </select>
-
+        <select name="videoType" id="videoType"
+          onChange={e => setVideoType(e.currentTarget.value)}
+        >
+          <option value="Twitch">Twitch</option>
+          <option value="Youtube">Youtube</option>
+        </select>
         <Row>
           <Col>
             <label>Player 1</label>

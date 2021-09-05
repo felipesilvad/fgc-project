@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 import firebase from '../../../firebase';
-import MatchListChar from '../List/MatchListChar'
+import MatchDetailSets from '../Detail/MatchDetailSets'
 
 import {Row, Col, Nav} from 'react-bootstrap';
 
@@ -29,26 +29,7 @@ function MatchDetail ({match}) {
   return (
     <div className='app'>
       <Row>
-        <Col className="d-flex justify-content-center">
-          {!! matchGame.sets &&(
-            <ReactPlayer
-              ref={playerRef}
-              className="player"
-              url={`https://www.twitch.tv/videos/${matchGame.videoID}`}
-              controls='true'
-              config={{
-                twitch: {
-                  options: {
-                    time: `${matchGame.sets[0].h}h${matchGame.sets[0].m}m${matchGame.sets[0].s}s`
-                  },
-                }
-              }}
-              muted={false}
-              autoplay='false'
-            />
-          )}
-        </Col>
-        <Col md={4} >
+        <Col sm={4}  >
           <Nav variant="pills" className="flex-column">
             {!! matchGame.sets &&(
               matchGame.sets.map((set) => (
@@ -56,12 +37,53 @@ function MatchDetail ({match}) {
                   <Nav.Link onClick={() => handleTime(
                     (parseInt(set.h) * 3600) + (parseInt(set.m) * 60) + parseInt(set.s)
                   )}>
-                    <MatchListChar id1={set.Char1} id2={set.Char2}/>
+                    <MatchDetailSets set={set}/>
                   </Nav.Link>
                 </Nav.Item>
               ))
             )}
           </Nav>
+        </Col>
+        <Col sm={8} className="d-flex justify-content-center">
+          {!! matchGame.sets &&(
+            (matchGame.videoType === "Youtube") ? (
+              <ReactPlayer
+                ref={playerRef}
+                className="player"
+                width={1920}
+                heigh={1080}
+                url={`https://www.youtube.com/watch?v=${matchGame.videoID}?t=${((matchGame.sets[0].h*3600) + (matchGame.sets[0].m*60) + parseInt(matchGame.sets[0].s))}`}
+                controls='true'
+                config={{
+                  youtube: {
+                    options: {
+                      time: `${matchGame.sets[0].h}h${matchGame.sets[0].m}m${matchGame.sets[0].s}s`
+                    },
+                  }
+                }}
+                muted={false}
+                autoplay='true'
+              />
+            ) : (
+              <ReactPlayer
+                ref={playerRef}
+                className="player"
+                width="100%"
+                heigh="100%"
+                url={`https://www.twitch.tv/videos/${matchGame.videoID}`}
+                controls='true'
+                config={{
+                  twitch: {
+                    options: {
+                      time: `${matchGame.sets[0].h}h${matchGame.sets[0].m}m${matchGame.sets[0].s}s`
+                    },
+                  }
+                }}
+                muted={false}
+                autoplay='false'
+              />
+            )
+          )}
         </Col>
       </Row>
     </div>

@@ -4,3 +4,7 @@
   color: white;
   text-decoration: none;
 }
+
+.add-set:hover {
+  background-color: lighten($light, 8%);
+}
