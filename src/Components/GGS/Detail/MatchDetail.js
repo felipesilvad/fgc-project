@@ -2,8 +2,51 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 import firebase from '../../../firebase';
 import MatchDetailSets from '../Detail/MatchDetailSets'
-
+import ReactCountryFlag from "react-country-flag"
+import {Link} from 'react-router-dom';
 import {Row, Col, Nav} from 'react-bootstrap';
+
+function usePlayers() {
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    const unsubscribe = firebase
+      .firestore()
+      .collection('Players')
+      .onSnapshot((snapshot) => {
+        const newPlayers = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+
+        setPlayers(newPlayers)
+      })
+    return () => unsubscribe()
+  }, [])
+
+  return players;
+}
+
+function useRegions() {
+  const [regions, setRegions] = useState([])
+
+  useEffect(() => {
+    const unsubscribe = firebase
+      .firestore()
+      .collection('Regions')
+      .onSnapshot((snapshot) => {
+        const newRegions = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+
+        setRegions(newRegions)
+      })
+    return () => unsubscribe()
+  }, [])
+
+  return regions;
+}
 
 function MatchDetail ({match}) {
   const matchGameRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Matches').doc(match.params.id);
@@ -14,6 +57,14 @@ function MatchDetail ({match}) {
       setMatchGame(newMatchGame)
     })
   }, [])
+
+  const players = usePlayers();
+  const player1 = players.filter(player =>  player.id === matchGame.player1)[0]
+  const player2 = players.filter(player =>  player.id === matchGame.player2)[0]
+
+  const regions = useRegions();
+  const region1 = regions.filter(region =>  region.id === player1.region)[0]
+  const region2 = regions.filter(region =>  region.id === player2.region)[0]
 
   const [state, setState] = useState({
     played: 0,
@@ -44,10 +95,10 @@ function MatchDetail ({match}) {
             )}
           </Nav>
         </Col>
-        <Col sm={8} className="d-flex justify-content-center">
+        <Col sm={8} >
           {!! matchGame.sets &&(
             (matchGame.videoType === "Youtube") ? (
-              <ReactPlayer
+              <ReactPlayer 
                 ref={playerRef}
                 className="player"
                 width={1920}
@@ -84,7 +135,26 @@ function MatchDetail ({match}) {
               />
             )
           )}
+          <div class="d-flex justify-content-between">
+            <div>
+              <Link className="player-title p-2">
+                {!! player1 &&(player1.title)}
+              </Link>
+              {!! region1 &&(
+                <ReactCountryFlag countryCode={region1.flag} svg />
+              )}
+            </div>
+            <div>
+              {!! region2 &&(
+                <ReactCountryFlag countryCode={region2.flag} svg />
+              )}
+              <Link className="player-title p-2">
+                {!! player2 &&(player2.title)}
+              </Link>
+            </div>
+          </div>
         </Col>
+        
       </Row>
     </div>
   );
