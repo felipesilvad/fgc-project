@@ -57,6 +57,7 @@ const AddMatch = ({tournament_id}) => {
   const [date, setDate] = useState('');
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
+  const [endTime, setEndTime] = useState('');
 
   const [S1time, setS1Time] = useState('');
   const [S1Char1, setS1Char1] = useState('');
@@ -340,7 +341,7 @@ const AddMatch = ({tournament_id}) => {
     const matchRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Matches');
 
     matchRef.add({
-      type, player1, player2, sets, tournament_id, videoID, videoType,
+      type, player1, player2, sets, tournament_id, videoID, videoType, endTime,
       date: firebase.firestore.Timestamp.fromDate(new Date(moment(date).format('MMMM D YYYY'))),
     })
 
@@ -686,7 +687,7 @@ const AddMatch = ({tournament_id}) => {
             </div>
           </Col>
         </Row>
-
+        <input type="text" onChange={e => setEndTime(e.currentTarget.value)} />
         <button className="button add-button">Add</button>
       </form>
     </div>

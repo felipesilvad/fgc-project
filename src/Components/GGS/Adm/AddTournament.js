@@ -61,7 +61,8 @@ const AddTournament = () => {
 
 
   function onSubmit(e) {
-
+    e.preventDefault()
+    
     const tournamentsRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Tournaments')
     tournamentsRef.add({
       title, serie, location, smashgg, tonamel, type, format, entrants,
