@@ -14,6 +14,7 @@ function useMatch() {
       .collection('games')
       .doc('Guilty Gear Strive')
       .collection('Matches')
+      // .orderBy('endTime')
       .onSnapshot((snapshot) => {
         const newMatch = snapshot.docs.map((doc) => ({
           id: doc.id,

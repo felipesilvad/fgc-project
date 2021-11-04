@@ -101,8 +101,8 @@ function MatchDetail ({match}) {
               <ReactPlayer 
                 ref={playerRef}
                 className="player"
-                width={1920}
-                heigh={1080}
+                // width={1920}
+                // heigh={1080}
                 url={`https://www.youtube.com/watch?v=${matchGame.videoID}?t=${((matchGame.sets[0].h*3600) + (matchGame.sets[0].m*60) + parseInt(matchGame.sets[0].s))}`}
                 controls='true'
                 config={{
