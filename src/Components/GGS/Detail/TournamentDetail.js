@@ -40,13 +40,33 @@ function TournamentDetail ({match}) {
     })
   }, [])
 
-  console.log(matchesGame)
   return (
     <Row className=''>
-      <Col md={2}>
+      <Col md={2} className="side-bg">
         <div>
           <h2 className="player-title">{tournament.title}</h2>
-          <a href={tournament.smashgg}>smash.gg</a>
+          {!! tournament.start_date &&(
+            <h5>Date: {tournament.start_date.toDate().toLocaleDateString()}</h5>
+          )}
+          {!! tournament.start_date &&(
+            <h5>Type: {tournament.type}</h5>
+          )}
+          {!! tournament.start_date &&(
+            <h5>Entrants: {tournament.entrants}</h5>
+          )}
+          {!! tournament.start_date &&(
+            <h5>Format: {tournament.format}</h5>
+          )}
+          {!! tournament.smashgg &&(
+            <div className="text-center smashgg-bg">
+              <a href={tournament.smashgg} className="smashgg-bg">smash.gg</a>
+            </div>
+          )}
+          {!! tournament.tonamel &&(
+            <div className="text-center tonamel-bg">
+              <a href={tournament.tonamel} className="tonamel-bg">Tonamel</a>
+            </div>
+          )}
         </div>
       </Col>
       <Col className="scrollbar scrollbar-primary">
@@ -65,6 +85,18 @@ function TournamentDetail ({match}) {
               </Link>
             ))}
             {matchesGame.filter(matchs => matchs.type == "Grand Final")
+            .map((matchGame) => (
+              <Link to={`/GGS/vods/${matchGame.id}`}>
+                <div className="add-set p-3">
+                  <div class="text-center">
+                    {matchGame.type}
+                  </div>
+                  <MatchListPlayer id1={matchGame.player1} id2={matchGame.player2}/>
+                  <MatchListChar id1={matchGame.sets[0].Char1} id2={matchGame.sets[0].Char2} />
+                </div>
+              </Link>
+            ))}
+            {matchesGame.filter(matchs => matchs.type == "Semi Final")
             .map((matchGame) => (
               <Link to={`/GGS/vods/${matchGame.id}`}>
                 <div className="add-set p-3">

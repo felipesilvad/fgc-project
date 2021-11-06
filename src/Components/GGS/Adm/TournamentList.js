@@ -14,7 +14,6 @@ import {Link} from 'react-router-dom';
     }))
     setTournaments(newTournaments)
   });
-
   
   return (
     <div>
