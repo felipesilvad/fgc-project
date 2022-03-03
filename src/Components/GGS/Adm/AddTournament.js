@@ -122,6 +122,8 @@ const AddTournament = () => {
             >
               <option value=""></option>
               <option value="Online">Online</option>
+              <option value="In person">In person</option>
+              <option value="Invitational">Invitational</option>
             </select>
             Format
             <select name="Format" id="Format"
@@ -129,6 +131,7 @@ const AddTournament = () => {
             >
               <option value=""></option>
               <option value="Double-elimination">Double-elimination</option>
+              <option value="Single-Elimination">Single-Elimination</option>
             </select>
           </p>
         <button className="button add-button">Add</button>
