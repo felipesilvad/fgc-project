@@ -87,8 +87,6 @@ const MatchDetail = ({match}) => {
   }
 
   const CharWinRate = Math.round(((CharWins.length/CharMatches.length) * 100 + Number.EPSILON) * 100) / 100
-  console.log(CharWins)
-
   
   return (
     <Container >

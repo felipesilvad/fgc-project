@@ -14,7 +14,7 @@ function usePlayers() {
       .collection('Players')
       .onSnapshot((snapshot) => {
         const newPlayers = snapshot.docs.map((doc) => ({
-          value: doc.id, label: doc.data().title
+          value: doc.id, label: doc.data().title + " | " + doc.data().twitter.replace('https://twitter.com/', '')
         }))
 
         setPlayers(newPlayers)
@@ -360,11 +360,13 @@ const AddMatch = ({tournament_id}) => {
           <option value=""></option>
           <option value="Pools">Pools</option>
           <option value="Top 128">Top 128</option>
+          <option value="Top 96">Top 96</option>
           <option value="Top 64">Top 64</option>
           <option value="Top 48">Top 48</option>
           <option value="Top 32">Top 32</option>
           <option value="Top 16">Top 16</option>
           <option value="Top 8">Top 8</option>
+          <option value="Top 4">Top 4</option>
           <option value="Winners Final">Winners Final</option>
           <option value="Losers Semi-Final">Losers Semi-Final</option>
           <option value="Losers Final">Losers Final</option>
@@ -690,6 +692,8 @@ const AddMatch = ({tournament_id}) => {
         <input type="text" onChange={e => setEndTime(e.currentTarget.value)} />
         <button className="button add-button">Add</button>
       </form>
+      <hr />
+      <hr />
     </div>
   )
 }

@@ -75,7 +75,7 @@ function TournamentDetail ({match}) {
           <Tab className="t-tab-overflow" eventKey="Top 8" title="Top 8">
             {matchesGame.filter(matchs => matchs.type == "Grand Final Reset")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -87,7 +87,7 @@ function TournamentDetail ({match}) {
             ))}
             {matchesGame.filter(matchs => matchs.type == "Grand Final")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -99,7 +99,7 @@ function TournamentDetail ({match}) {
             ))}
             {matchesGame.filter(matchs => matchs.type == "Semi Final")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -111,7 +111,7 @@ function TournamentDetail ({match}) {
             ))}
             {matchesGame.filter(matchs => matchs.type == "Losers Final")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -123,7 +123,7 @@ function TournamentDetail ({match}) {
             ))}
             {matchesGame.filter(matchs => matchs.type == "Losers Semi-Final")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -135,7 +135,19 @@ function TournamentDetail ({match}) {
             ))}
             {matchesGame.filter(matchs => matchs.type == "Winners Final")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
+                <div className="add-set p-3">
+                  <div class="text-center">
+                    {matchGame.type}
+                  </div>
+                  <MatchListPlayer id1={matchGame.player1} id2={matchGame.player2}/>
+                  <MatchListChar id1={matchGame.sets[0].Char1} id2={matchGame.sets[0].Char2} />
+                </div>
+              </Link>
+            ))}
+            {matchesGame.filter(matchs => matchs.type == "Top 4")
+            .map((matchGame) => (
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -147,7 +159,7 @@ function TournamentDetail ({match}) {
             ))}
             {matchesGame.filter(matchs => matchs.type == "Top 8")
             .map((matchGame) => (
-              <Link to={`/GGS/vods/${matchGame.id}`}>
+              <Link to={`/GGST/vods/${matchGame.id}`}>
                 <div className="add-set p-3">
                   <div class="text-center">
                     {matchGame.type}
@@ -162,7 +174,7 @@ function TournamentDetail ({match}) {
             <Tab className="t-tab-overflow" eventKey="Top 16" title="Top 16">
               {matchesGame.filter(matchs => matchs.type == "Top 16")
               .map((matchGame) => (
-                <Link to={`/GGS/vods/${matchGame.id}`}>
+                <Link to={`/GGST/vods/${matchGame.id}`}>
                   <div className="add-set p-3">
                     <div class="text-center">
                       {matchGame.type}
@@ -178,7 +190,7 @@ function TournamentDetail ({match}) {
             <Tab className="t-tab-overflow" eventKey="Top 32" title="Top 32">
               {matchesGame.filter(matchs => matchs.type == "Top 32")
               .map((matchGame) => (
-                <Link to={`/GGS/vods/${matchGame.id}`}>
+                <Link to={`/GGST/vods/${matchGame.id}`}>
                   <div className="add-set p-3">
                     <div class="text-center">
                       {matchGame.type}
@@ -194,7 +206,7 @@ function TournamentDetail ({match}) {
             <Tab className="t-tab-overflow" eventKey="Top 48" title="Top 48">
               {matchesGame.filter(matchs => matchs.type == "Top 48")
               .map((matchGame) => (
-                <Link to={`/GGS/vods/${matchGame.id}`}>
+                <Link to={`/GGST/vods/${matchGame.id}`}>
                   <div className="add-set p-3">
                     <div class="text-center">
                       {matchGame.type}
@@ -210,7 +222,23 @@ function TournamentDetail ({match}) {
             <Tab className="t-tab-overflow" eventKey="Top 64" title="Top 64">
               {matchesGame.filter(matchs => matchs.type == "Top 64")
               .map((matchGame) => (
-                <Link to={`/GGS/vods/${matchGame.id}`}>
+                <Link to={`/GGST/vods/${matchGame.id}`}>
+                  <div className="add-set p-3">
+                    <div class="text-center">
+                      {matchGame.type}
+                    </div>
+                    <MatchListPlayer id1={matchGame.player1} id2={matchGame.player2}/>
+                    <MatchListChar id1={matchGame.sets[0].Char1} id2={matchGame.sets[0].Char2} />
+                  </div>
+                </Link>
+              ))}
+            </Tab>
+          )}
+          {!! matchesGame.filter(matchs => matchs.type == "Top 96")[0] && (
+            <Tab className="t-tab-overflow" eventKey="Top 96" title="Top 96">
+              {matchesGame.filter(matchs => matchs.type == "Top 96")
+              .map((matchGame) => (
+                <Link to={`/GGST/vods/${matchGame.id}`}>
                   <div className="add-set p-3">
                     <div class="text-center">
                       {matchGame.type}
@@ -226,7 +254,7 @@ function TournamentDetail ({match}) {
             <Tab className="t-tab-overflow" eventKey="Top 128" title="Top 128">
               {matchesGame.filter(matchs => matchs.type == "Top 128")
               .map((matchGame) => (
-                <Link to={`/GGS/vods/${matchGame.id}`}>
+                <Link to={`/GGST/vods/${matchGame.id}`}>
                   <div className="add-set p-3">
                     <div class="text-center">
                       {matchGame.type}
@@ -242,7 +270,7 @@ function TournamentDetail ({match}) {
             <Tab className="t-tab-overflow" eventKey="Pools" title="Pools">
               {matchesGame.filter(matchs => matchs.type == "Pools")
               .map((matchGame) => (
-                <Link to={`/GGS/vods/${matchGame.id}`}>
+                <Link to={`/GGST/vods/${matchGame.id}`}>
                   <div className="add-set p-3">
                     <div class="text-center">
                       {matchGame.type}

@@ -17,7 +17,7 @@ const MatchListItem = ({matchGame}) => {
   }, [])
 
   return (
-    <Link to={`/GGS/vods/${matchGame.id}`}>
+    <Link to={`/GGST/vods/${matchGame.id}`}>
       <div className="add-set p-3">
         <div class="text-center">
           {!! tournament.title &&(tournament.title)}

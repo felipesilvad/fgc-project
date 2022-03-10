@@ -49,7 +49,7 @@ const TournamentsList = () => {
               <tr>
                 <td>{tournament.start_date.toDate().toLocaleDateString()}</td>
                 <td>
-                  <Link to={`/GGS/tournaments/${tournament.id}`}>
+                  <Link to={`/GGST/tournaments/${tournament.id}`}>
                     {tournament.title}
                   </Link>
                 </td>

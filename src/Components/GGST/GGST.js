@@ -13,20 +13,20 @@ import CharactersList from './List/CharacterList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
-function GGS() {
+function GGST() {
   return (
     <Container fuild>
-      <Route path="/GGS/adm" component={AdmGame} exact/>
-      <Route path="/GGS/adm/tournaments" component={AddTournament} exact/>
-      <Route path="/GGS/adm/tournaments/:id" component={AdmTournament} exact/>
-      <Route path="/GGS/vods" component={MatchList} exact/>
-      <Route path="/GGS/vods/:id" component={MatchDetail} exact/>
-      <Route path="/GGS/character/" component={CharactersList} exact/>
-      <Route path="/GGS/character/:id" component={CharacterDetail} exact/>
-      <Route path="/GGS/tournaments/" component={TournamentsList} exact/>
-      <Route path="/GGS/tournaments/:id" component={TournamentDetail} exact/>
+      <Route path="/GGST/adm" component={AdmGame} exact/>
+      <Route path="/GGST/adm/tournaments" component={AddTournament} exact/>
+      <Route path="/GGST/adm/tournaments/:id" component={AdmTournament} exact/>
+      <Route path="/GGST/vods" component={MatchList} exact/>
+      <Route path="/GGST/vods/:id" component={MatchDetail} exact/>
+      <Route path="/GGST/character/" component={CharactersList} exact/>
+      <Route path="/GGST/character/:id" component={CharacterDetail} exact/>
+      <Route path="/GGST/tournaments/" component={TournamentsList} exact/>
+      <Route path="/GGST/tournaments/:id" component={TournamentDetail} exact/>
     </Container>
   );
 }
 
-export default GGS;
+export default GGST;
