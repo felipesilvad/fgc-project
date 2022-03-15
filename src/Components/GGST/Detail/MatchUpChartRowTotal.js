@@ -58,20 +58,47 @@ const MatchUpChartRowTotal = ({character_id}) => {
         >
           {isShown && (
             <div className='hover_detail_bg'>
-              {CharWins} Wins
-              of {CharMatches} Matches
+              <h6 className='hover_detail_txt'>
+                {!! CharWins &&(CharWins.length)} Wins <br />
+                of {!! CharMatches &&(CharMatches.length)} Matches
+              </h6>
             </div>
           )}
           <b style={{background: `none`}}>{CharWinRate}%</b>
         </td>
       )}
       {CharWinRate < 50 &&(
-        <td className="p-0 text-center" style={{background: `rgba(225, 49, 51, ${Math.abs(Math.round(CharWinRate - 100)/100)- 0.2})`}}>
+        <td 
+          className="p-0 text-center" 
+          style={{background: `rgba(225, 49, 51, ${Math.abs(Math.round(CharWinRate - 100)/100)- 0.2})`}}
+          onMouseEnter={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
+        >
+          {isShown && (
+            <div className='hover_detail_bg'>
+              <h6 className='hover_detail_txt'>
+                {!! CharWins &&(CharWins.length)} Wins <br />
+                of {!! CharMatches &&(CharMatches.length)} Matches
+              </h6>
+            </div>
+          )}
           <b style={{background: `none`}}>{CharWinRate}%</b>
         </td>
       )}
       {CharWinRate == 50 &&(
-        <td className="p-0 text-center">
+        <td 
+          className="p-0 text-center"
+          onMouseEnter={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
+        >
+          {isShown && (
+            <div className='hover_detail_bg'>
+              <h6 className='hover_detail_txt'>
+                {!! CharWins &&(CharWins.length)} Wins <br />
+                of {!! CharMatches &&(CharMatches.length)} Matches
+              </h6>
+            </div>
+          )}
           <b style={{background: `none`}}>{CharWinRate}%</b>
         </td>
       )}

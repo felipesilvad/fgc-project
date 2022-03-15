@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../../../firebase';
+import firebase from '../../firebase';
 import {Link} from 'react-router-dom';
 import { Row, Col, Image, Table } from 'react-bootstrap';
-import CharacterListItem from '../List/CharacterListItem';
-import MatchUpChart from '../Detail/MatchUpChart';
 
 function useMatches() {
   const [matches, setMatches] = useState([])
@@ -53,22 +51,11 @@ function useChar() {
 
 const CharactersList = () => {
   const characters = useChar();
+  const matches = useMatches();
 
   return (
     <div>
-      <h4>Characters List</h4>
-      <Row>
-        {characters.map((character) => (
-          <CharacterListItem
-            character_id={character.id}
-            character_img={character.img}
-            character_title={character.title}
-          />
-        ))}
-      </Row>
-
-      {/* <MatchUpChart /> */}
-
+      <h4>Home</h4>
     </div>
   )
 }

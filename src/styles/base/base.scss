@@ -16,8 +16,12 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, .hover-h {
   color: $highlight!important;
+}
+
+.none-hover:hover {
+  color: #efefef!important;
 }
 
 label {
@@ -35,9 +39,13 @@ label {
   background-color: $highlight;
 }
 
-.nav-link {
+.nav-link, .nav-item {
   color: white;
 }
 .nav-link:hover {
+  color: white;
+}
+
+Nav.Link {
   color: white;
 }

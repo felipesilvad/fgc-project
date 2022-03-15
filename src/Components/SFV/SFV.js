@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Route} from 'react-router-dom';
 import AdmGameSFV from './Adm/AdmGameSFV';
 import AdmTournament from './Adm/AdmTournament';
 import MatchList from './List/MatchList';

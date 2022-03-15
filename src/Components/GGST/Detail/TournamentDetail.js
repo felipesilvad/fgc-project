@@ -186,6 +186,22 @@ function TournamentDetail ({match}) {
               ))}
             </Tab>
           )}
+          {!! matchesGame.filter(matchs => matchs.type == "Top 24")[0] && (
+            <Tab className="t-tab-overflow" eventKey="Top 24" title="Top 24">
+              {matchesGame.filter(matchs => matchs.type == "Top 24")
+              .map((matchGame) => (
+                <Link to={`/GGST/vods/${matchGame.id}`}>
+                  <div className="add-set p-3">
+                    <div class="text-center">
+                      {matchGame.type}
+                    </div>
+                    <MatchListPlayer id1={matchGame.player1} id2={matchGame.player2}/>
+                    <MatchListChar id1={matchGame.sets[0].Char1} id2={matchGame.sets[0].Char2} />
+                  </div>
+                </Link>
+              ))}
+            </Tab>
+          )}
           {!! matchesGame.filter(matchs => matchs.type == "Top 32")[0] && (
             <Tab className="t-tab-overflow" eventKey="Top 32" title="Top 32">
               {matchesGame.filter(matchs => matchs.type == "Top 32")

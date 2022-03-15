@@ -1,3 +1,35 @@
 .hover_detail_bg {
   position: absolute;
+  opacity: 0.8;
+  z-index: 10;
+  background-color: rgba($color: #000000, $alpha: 0)!important;
+}
+
+.hover_detail_txt {
+  opacity: 0.8;
+  margin-top: 12px;
+  border: 1px solid $highlight;
+  border-radius: 8px;
+  background-color: $light;
+  padding: 0.4rem;
+  border-top: none;
+  border-bottom: none;
+}
+
+.char-list-block {
+  background-color: $more-light;
+  margin: 0.2rem;
+}
+
+.char-list-block:hover {
+  background-color: lighten($light, 8%);
+
+}
+
+.char-list-title {
+  letter-spacing: -1px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  color: $highlight;
 }

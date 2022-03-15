@@ -364,6 +364,7 @@ const AddMatch = ({tournament_id}) => {
           <option value="Top 64">Top 64</option>
           <option value="Top 48">Top 48</option>
           <option value="Top 32">Top 32</option>
+          <option value="Top 24">Top 24</option>
           <option value="Top 16">Top 16</option>
           <option value="Top 8">Top 8</option>
           <option value="Top 4">Top 4</option>
