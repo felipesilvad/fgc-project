@@ -1,0 +1,17 @@
+.char-detail__img {
+  width: 18rem;
+  border-right: 1px solid $highlight;
+  border-radius: 8px 0  0 8px;
+}
+
+.char-detail__top{
+  border: 1px solid $highlight;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+}
+
+.char-detail__overlay {
+  background-color:rgba($color: #000000, $alpha: 0.7);
+  height: inherit;
+  height: 100%;
+}

@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import ReactPlayer from 'react-player'
 import firebase from '../../../firebase';
 import MatchListPlayer from '../List/MatchListPlayer'
-import {Container, Image, Table} from 'react-bootstrap';
+import {Container, Row, Col, Image, Table} from 'react-bootstrap';
 
 function useMatches() {
   const [matches, setMatches] = useState([])
@@ -87,11 +86,25 @@ const MatchDetail = ({match}) => {
   }
 
   const CharWinRate = Math.round(((CharWins.length/CharMatches.length) * 100 + Number.EPSILON) * 100) / 100
+
+  const customStyles = {
+    backgroundImage: `url(${character.cut_url})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'auto',
+  }
   
   return (
     <Container >
-      {character.id}
-      <Image src={character.img}/>
+      <div className='char-detail__top d-flex'>
+        <Image className='char-detail__img' src={character.img}/>
+        <div className='w-100' style={customStyles}>
+          <div className='d-flex char-detail__overlay'>
+            <h1>{character.title}</h1>
+          </div>
+        </div>
+      </div>
+      
+
       <h3>{CharWinRate}%</h3><h5>Total Matches: {CharMatches.length} Wins: {CharWins.length}</h5>
 
       <Table striped bordered hover variant="dark">

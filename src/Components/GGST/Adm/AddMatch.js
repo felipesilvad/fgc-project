@@ -141,203 +141,407 @@ const AddMatch = ({tournament_id}) => {
     }
     if (S2time) {
       if (S2Char1Result > S2Char2Result) {
-        sets.push({
-          "id": 2,
-          "h": S2time.split(':')[0],
-          "m": S2time.split(':')[1],
-          "s": S2time.split(':')[2],
-          "Char1": S2Char1,
-          "Char1Result": S2Char1Result,
-          "Char2": S2Char2,
-          "Char2Result": S2Char2Result,
-          "WChar": S2Char1,
-          "WPlayer": player1,
-          "LChar": S2Char2,
-          "LPlayer": player2,
-        })
+        if (S2Char1) {
+          sets.push({
+            "id": 2,
+            "h": S2time.split(':')[0],
+            "m": S2time.split(':')[1],
+            "s": S2time.split(':')[2],
+            "Char1": S2Char1,
+            "Char1Result": S2Char1Result,
+            "Char2": S2Char2,
+            "Char2Result": S2Char2Result,
+            "WChar": S2Char1,
+            "WPlayer": player1,
+            "LChar": S2Char2,
+            "LPlayer": player2,
+          })
+        } else {
+          sets.push({
+            "id": 2,
+            "h": S2time.split(':')[0],
+            "m": S2time.split(':')[1],
+            "s": S2time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S2Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S2Char2Result,
+            "WChar": S1Char1,
+            "WPlayer": player1,
+            "LChar": S1Char2,
+            "LPlayer": player2,
+          })
+        }
       } else {
-        sets.push({
-          "id": 2,
-          "h": S2time.split(':')[0],
-          "m": S2time.split(':')[1],
-          "s": S2time.split(':')[2],
-          "Char1": S2Char1,
-          "Char1Result": S2Char1Result,
-          "Char2": S2Char2,
-          "Char2Result": S2Char2Result,
-          "WChar": S2Char2,
-          "WPlayer": player2,
-          "LChar": S2Char1,
-          "LPlayer": player1,
-        })
+        if (S2Char1) {
+          sets.push({
+            "id": 2,
+            "h": S2time.split(':')[0],
+            "m": S2time.split(':')[1],
+            "s": S2time.split(':')[2],
+            "Char1": S2Char1,
+            "Char1Result": S2Char1Result,
+            "Char2": S2Char2,
+            "Char2Result": S2Char2Result,
+            "WChar": S2Char2,
+            "WPlayer": player2,
+            "LChar": S2Char1,
+            "LPlayer": player1,
+          })
+        } else {
+          sets.push({
+            "id": 2,
+            "h": S2time.split(':')[0],
+            "m": S2time.split(':')[1],
+            "s": S2time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S2Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S2Char2Result,
+            "WChar": S1Char2,
+            "WPlayer": player2,
+            "LChar": S1Char1,
+            "LPlayer": player1,
+          })
+        }
       }
     }
     if (S3time) {
       if (S3Char1Result > S3Char2Result) {
-        sets.push({
-          "id": 3,
-          "h": S3time.split(':')[0],
-          "m": S3time.split(':')[1],
-          "s": S3time.split(':')[2],
-          "Char1": S3Char1,
-          "Char1Result": S3Char1Result,
-          "Char2": S3Char2,
-          "Char2Result": S3Char2Result,
-          "WChar": S3Char1,
-          "WPlayer": player1,
-          "LChar": S3Char2,
-          "LPlayer": player2,
-        })
+        if (S3Char1) {
+          sets.push({
+            "id": 3,
+            "h": S3time.split(':')[0],
+            "m": S3time.split(':')[1],
+            "s": S3time.split(':')[2],
+            "Char1": S3Char1,
+            "Char1Result": S3Char1Result,
+            "Char2": S3Char2,
+            "Char2Result": S3Char2Result,
+            "WChar": S3Char1,
+            "WPlayer": player1,
+            "LChar": S3Char2,
+            "LPlayer": player2,
+          })
+        } else {
+          sets.push({
+            "id": 3,
+            "h": S3time.split(':')[0],
+            "m": S3time.split(':')[1],
+            "s": S3time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S3Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S3Char2Result,
+            "WChar": S1Char1,
+            "WPlayer": player1,
+            "LChar": S1Char2,
+            "LPlayer": player2,
+          })
+        }
       } else {
-        sets.push({
-          "id": 3,
-          "h": S3time.split(':')[0],
-          "m": S3time.split(':')[1],
-          "s": S3time.split(':')[2],
-          "Char1": S3Char1,
-          "Char1Result": S3Char1Result,
-          "Char2": S3Char2,
-          "Char2Result": S3Char2Result,
-          "WChar": S3Char2,
-          "WPlayer": player2,
-          "LChar": S3Char1,
-          "LPlayer": player1,
-        })
+        if (S3Char1) {
+          sets.push({
+            "id": 3,
+            "h": S3time.split(':')[0],
+            "m": S3time.split(':')[1],
+            "s": S3time.split(':')[2],
+            "Char1": S3Char1,
+            "Char1Result": S3Char1Result,
+            "Char2": S3Char2,
+            "Char2Result": S3Char2Result,
+            "WChar": S3Char2,
+            "WPlayer": player2,
+            "LChar": S3Char1,
+            "LPlayer": player1,
+          })
+        } else {
+          sets.push({
+            "id": 3,
+            "h": S3time.split(':')[0],
+            "m": S3time.split(':')[1],
+            "s": S3time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S3Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S3Char2Result,
+            "WChar": S1Char2,
+            "WPlayer": player2,
+            "LChar": S1Char1,
+            "LPlayer": player1,
+          })
+        }
       }
     }
     if (S4time) {
       if (S4Char1Result > S4Char2Result) {
-        sets.push({
-          "id": 4,
-          "h": S4time.split(':')[0],
-          "m": S4time.split(':')[1],
-          "s": S4time.split(':')[2],
-          "Char1": S4Char1,
-          "Char1Result": S4Char1Result,
-          "Char2": S4Char2,
-          "Char2Result": S4Char2Result,
-          "WChar": S4Char1,
-          "WPlayer": player1,
-          "LChar": S4Char2,
-          "LPlayer": player2,
-        })
+        if (S4Char1) {
+          sets.push({
+            "id": 4,
+            "h": S4time.split(':')[0],
+            "m": S4time.split(':')[1],
+            "s": S4time.split(':')[2],
+            "Char1": S4Char1,
+            "Char1Result": S4Char1Result,
+            "Char2": S4Char2,
+            "Char2Result": S4Char2Result,
+            "WChar": S4Char1,
+            "WPlayer": player1,
+            "LChar": S4Char2,
+            "LPlayer": player2,
+          })
+        } else {
+          sets.push({
+            "id": 4,
+            "h": S4time.split(':')[0],
+            "m": S4time.split(':')[1],
+            "s": S4time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S4Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S4Char2Result,
+            "WChar": S1Char1,
+            "WPlayer": player1,
+            "LChar": S1Char2,
+            "LPlayer": player2,
+          })
+        }
       } else {
-        sets.push({
-          "id": 4,
-          "h": S4time.split(':')[0],
-          "m": S4time.split(':')[1],
-          "s": S4time.split(':')[2],
-          "Char1": S4Char1,
-          "Char1Result": S4Char1Result,
-          "Char2": S4Char2,
-          "Char2Result": S4Char2Result,
-          "WChar": S4Char2,
-          "WPlayer": player2,
-          "LChar": S4Char1,
-          "LPlayer": player1,
-        })
+        if (S4Char1) {
+          sets.push({
+            "id": 4,
+            "h": S4time.split(':')[0],
+            "m": S4time.split(':')[1],
+            "s": S4time.split(':')[2],
+            "Char1": S4Char1,
+            "Char1Result": S4Char1Result,
+            "Char2": S4Char2,
+            "Char2Result": S4Char2Result,
+            "WChar": S4Char2,
+            "WPlayer": player2,
+            "LChar": S4Char1,
+            "LPlayer": player1,
+          })
+        } else {
+          sets.push({
+            "id": 4,
+            "h": S4time.split(':')[0],
+            "m": S4time.split(':')[1],
+            "s": S4time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S4Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S4Char2Result,
+            "WChar": S1Char2,
+            "WPlayer": player2,
+            "LChar": S1Char1,
+            "LPlayer": player1,
+          })
+        }
       }
     }
     if (S5time) {
       if (S5Char1Result > S5Char2Result) {
-        sets.push({
-          "id": 5,
-          "h": S5time.split(':')[0],
-          "m": S5time.split(':')[1],
-          "s": S5time.split(':')[2],
-          "Char1": S5Char1,
-          "Char1Result": S5Char1Result,
-          "Char2": S5Char2,
-          "Char2Result": S5Char2Result,
-          "WChar": S5Char1,
-          "WPlayer": player1,
-          "LChar": S5Char2,
-          "LPlayer": player2,
-        })
+        if (S5Char1) {
+          sets.push({
+            "id": 5,
+            "h": S5time.split(':')[0],
+            "m": S5time.split(':')[1],
+            "s": S5time.split(':')[2],
+            "Char1": S5Char1,
+            "Char1Result": S5Char1Result,
+            "Char2": S5Char2,
+            "Char2Result": S5Char2Result,
+            "WChar": S5Char1,
+            "WPlayer": player1,
+            "LChar": S5Char2,
+            "LPlayer": player2,
+          })
+        } else {
+          sets.push({
+            "id": 5,
+            "h": S5time.split(':')[0],
+            "m": S5time.split(':')[1],
+            "s": S5time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S5Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S5Char2Result,
+            "WChar": S1Char1,
+            "WPlayer": player1,
+            "LChar": S1Char2,
+            "LPlayer": player2,
+          })
+        }
       } else {
-        sets.push({
-          "id": 5,
-          "h": S5time.split(':')[0],
-          "m": S5time.split(':')[1],
-          "s": S5time.split(':')[2],
-          "Char1": S5Char1,
-          "Char1Result": S5Char1Result,
-          "Char2": S5Char2,
-          "Char2Result": S5Char2Result,
-          "WChar": S5Char2,
-          "WPlayer": player2,
-          "LChar": S5Char1,
-          "LPlayer": player1,
-        })
+        if (S5Char1) {
+          sets.push({
+            "id": 5,
+            "h": S5time.split(':')[0],
+            "m": S5time.split(':')[1],
+            "s": S5time.split(':')[2],
+            "Char1": S5Char1,
+            "Char1Result": S5Char1Result,
+            "Char2": S5Char2,
+            "Char2Result": S5Char2Result,
+            "WChar": S5Char2,
+            "WPlayer": player2,
+            "LChar": S5Char1,
+            "LPlayer": player1,
+          })
+        } else {
+          sets.push({
+            "id": 5,
+            "h": S5time.split(':')[0],
+            "m": S5time.split(':')[1],
+            "s": S5time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S5Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S5Char2Result,
+            "WChar": S1Char2,
+            "WPlayer": player2,
+            "LChar": S1Char1,
+            "LPlayer": player1,
+          })
+        }
       }
     }
     if (S6time) {
       if (S6Char1Result > S6Char2Result) {
-        sets.push({
-          "id": 6,
-          "h": S6time.split(':')[0],
-          "m": S6time.split(':')[1],
-          "s": S6time.split(':')[2],
-          "Char1": S6Char1,
-          "Char1Result": S6Char1Result,
-          "Char2": S6Char2,
-          "Char2Result": S6Char2Result,
-          "WChar": S6Char1,
-          "WPlayer": player1,
-          "LChar": S6Char2,
-          "LPlayer": player2,
-        })
+        if (S6Char1) {
+          sets.push({
+            "id": 6,
+            "h": S6time.split(':')[0],
+            "m": S6time.split(':')[1],
+            "s": S6time.split(':')[2],
+            "Char1": S6Char1,
+            "Char1Result": S6Char1Result,
+            "Char2": S6Char2,
+            "Char2Result": S6Char2Result,
+            "WChar": S6Char1,
+            "WPlayer": player1,
+            "LChar": S6Char2,
+            "LPlayer": player2,
+          })
+        } else {
+          sets.push({
+            "id": 6,
+            "h": S6time.split(':')[0],
+            "m": S6time.split(':')[1],
+            "s": S6time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S6Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S6Char2Result,
+            "WChar": S1Char1,
+            "WPlayer": player1,
+            "LChar": S1Char2,
+            "LPlayer": player2,
+          })
+        }
       } else {
-        sets.push({
-          "id": 5,
-          "h": S6time.split(':')[0],
-          "m": S6time.split(':')[1],
-          "s": S6time.split(':')[2],
-          "Char1": S6Char1,
-          "Char1Result": S6Char1Result,
-          "Char2": S6Char2,
-          "Char2Result": S6Char2Result,
-          "WChar": S6Char2,
-          "WPlayer": player2,
-          "LChar": S6Char1,
-          "LPlayer": player1,
-        })
+        if (S6Char1) {
+          sets.push({
+            "id": 6,
+            "h": S6time.split(':')[0],
+            "m": S6time.split(':')[1],
+            "s": S6time.split(':')[2],
+            "Char1": S6Char1,
+            "Char1Result": S6Char1Result,
+            "Char2": S6Char2,
+            "Char2Result": S6Char2Result,
+            "WChar": S6Char2,
+            "WPlayer": player2,
+            "LChar": S6Char1,
+            "LPlayer": player1,
+          })
+        } else {
+          sets.push({
+            "id": 6,
+            "h": S6time.split(':')[0],
+            "m": S6time.split(':')[1],
+            "s": S6time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S6Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S6Char2Result,
+            "WChar": S1Char2,
+            "WPlayer": player2,
+            "LChar": S1Char1,
+            "LPlayer": player1,
+          })
+        }
       }
     }
     if (S7time) {
       if (S7Char1Result > S7Char2Result) {
-        sets.push({
-          "id": 7,
-          "h": S7time.split(':')[0],
-          "m": S7time.split(':')[1],
-          "s": S7time.split(':')[2],
-          "Char1": S7Char1,
-          "Char1Result": S7Char1Result,
-          "Char2": S7Char2,
-          "Char2Result": S7Char2Result,
-          "WChar": S7Char1,
-          "WPlayer": player1,
-          "LChar": S7Char2,
-          "LPlayer": player2,
-        })
+        if (S7Char1) {
+          sets.push({
+            "id": 7,
+            "h": S7time.split(':')[0],
+            "m": S7time.split(':')[1],
+            "s": S7time.split(':')[2],
+            "Char1": S7Char1,
+            "Char1Result": S7Char1Result,
+            "Char2": S7Char2,
+            "Char2Result": S7Char2Result,
+            "WChar": S7Char1,
+            "WPlayer": player1,
+            "LChar": S7Char2,
+            "LPlayer": player2,
+          })
+        } else {
+          sets.push({
+            "id": 7,
+            "h": S7time.split(':')[0],
+            "m": S7time.split(':')[1],
+            "s": S7time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S7Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S7Char2Result,
+            "WChar": S1Char1,
+            "WPlayer": player1,
+            "LChar": S1Char2,
+            "LPlayer": player2,
+          })
+        }
       } else {
-        sets.push({
-          "id": 5,
-          "h": S7time.split(':')[0],
-          "m": S7time.split(':')[1],
-          "s": S7time.split(':')[2],
-          "Char1": S7Char1,
-          "Char1Result": S7Char1Result,
-          "Char2": S7Char2,
-          "Char2Result": S7Char2Result,
-          "WChar": S7Char2,
-          "WPlayer": player2,
-          "LChar": S7Char1,
-          "LPlayer": player1,
-        })
+        if (S7Char1) {
+          sets.push({
+            "id": 7,
+            "h": S7time.split(':')[0],
+            "m": S7time.split(':')[1],
+            "s": S7time.split(':')[2],
+            "Char1": S7Char1,
+            "Char1Result": S7Char1Result,
+            "Char2": S7Char2,
+            "Char2Result": S7Char2Result,
+            "WChar": S7Char2,
+            "WPlayer": player2,
+            "LChar": S7Char1,
+            "LPlayer": player1,
+          })
+        } else {
+          sets.push({
+            "id": 7,
+            "h": S7time.split(':')[0],
+            "m": S7time.split(':')[1],
+            "s": S7time.split(':')[2],
+            "Char1": S1Char1,
+            "Char1Result": S7Char1Result,
+            "Char2": S1Char2,
+            "Char2Result": S7Char2Result,
+            "WChar": S1Char2,
+            "WPlayer": player2,
+            "LChar": S1Char1,
+            "LPlayer": player1,
+          })
+        }
       }
     }
-
+    
     const matchRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Matches');
 
     matchRef.add({
