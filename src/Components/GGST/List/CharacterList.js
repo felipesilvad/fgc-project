@@ -67,7 +67,7 @@ const CharactersList = () => {
         ))}
       </Row>
 
-      <MatchUpChart />
+      {/* <MatchUpChart /> */}
 
     </div>
   )

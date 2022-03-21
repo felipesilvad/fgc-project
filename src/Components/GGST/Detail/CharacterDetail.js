@@ -89,15 +89,15 @@ const MatchDetail = ({match}) => {
 
   const customStyles = {
     backgroundImage: `url(${character.cut_url})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'auto',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   }
   
   return (
     <Container >
-      <div className='char-detail__top d-flex'>
+      <div className='char-detail__top d-flex' style={customStyles}>
         <Image className='char-detail__img' src={character.img}/>
-        <div className='w-100' style={customStyles}>
+        <div className='w-100' >
           <div className='d-flex char-detail__overlay'>
             <h1>{character.title}</h1>
           </div>
