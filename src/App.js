@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Adm from './Components/Adm';
 import SFV from './Components/SFV/SFV';
 import GGST from './Components/GGST/GGST';
-import MatchDetail from './Components/SFV/Detail/MatchDetail';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 

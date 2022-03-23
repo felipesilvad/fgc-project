@@ -1,5 +1,5 @@
 .char-detail__img {
-  width: 18rem;
+  width: 16rem;
   border-right: 1px solid $highlight;
   border-radius: 8px 0  0 8px;
 }
@@ -8,13 +8,42 @@
   border: 1px solid $highlight;
   border-radius: 8px;
   background-repeat: no-repeat;
+  
 }
 
 .char-detail__overlay {
   background-color:rgba($color: #000000, $alpha: 0.7);
-  background-color:linear-gradient(rgba($color: #000000, $alpha: 0.7), rgba($color: #000000, $alpha: 0.7));
-
   height: inherit;
-  
   height: 100%;
+}
+
+.char-detai__title {
+  // letter-spacing: -1px;
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.char-detai__jp {
+  margin-left: 1.5rem;
+  color: $highlight;
+  font-weight: bold;
+}
+
+.char-detail__stat-col {
+  background-color: rgba($light, 0.4);
+  border-radius: 2rem;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  margin: 0 4rem 0 4rem;
+}
+
+.dif-txt {
+  font-size: 1rem!important;
+  color: white;
 }

@@ -26,32 +26,32 @@ function useMatches() {
   return matches;
 }
 
-function useCharacters() {
-  const [characters, setCharacters] = useState([])
+function usePatches() {
+  const [patches, setPatches] = useState([])
 
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
       .collection('games')
       .doc('Guilty Gear Strive')
-      .collection('Characters')
+      .collection('Patches')
       .onSnapshot((snapshot) => {
-        const newCharacters = snapshot.docs.map((doc) => ({
+        const newPatches = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data()
         }))
 
-        setCharacters(newCharacters)
+        setPatches(newPatches)
       })
     return () => unsubscribe()
   }, [])
 
-  return characters;
+  return patches;
 }
 
 const MatchDetail = ({match}) => {
   const matches = useMatches();
-  const characters = useCharacters();
+  const patches = usePatches();
 
   const CharacterRef = firebase.firestore().collection('games').doc('Guilty Gear Strive').collection('Characters').doc(match.params.id);
   const [character, setCharacter] = useState('');
@@ -68,6 +68,7 @@ const MatchDetail = ({match}) => {
 
   const CharWins = []
   const CharMatches = []
+  const AllMatches = []
 
   if (character.id) {
     matches.forEach((singleMatch) => {
@@ -85,8 +86,80 @@ const MatchDetail = ({match}) => {
     })
   }
 
-  const CharWinRate = Math.round(((CharWins.length/CharMatches.length) * 100 + Number.EPSILON) * 100) / 100
+  matches.forEach((singleMatch) => {
+    singleMatch.sets.forEach((set) => {
+      AllMatches.push(set)
+    })
+  })
 
+  const CharWinRate = Math.round(((CharWins.length/CharMatches.length) * 100 + Number.EPSILON) * 100) / 100
+  const CharPlayRate = Math.round(((CharMatches.length/AllMatches.length) * 100 + Number.EPSILON) * 100) / 100
+
+  const currentPatch = patches[patches.length - 1];
+  const lastPatch = patches[patches.length - 2];
+  const currentPatchMatches = [];
+  const currentPatchAllMatches = [];
+  const lastPatchMatches = [];
+  const lastPatchAllMatches = [];
+  const currentPatchCharMatches = [];
+  const lastPatchCharMatches = [];
+  const currentPatchCharWins = [];
+  const lastPatchCharWins = [];
+
+  if (currentPatch) {
+    currentPatchMatches.push(matches.filter(match => match.date.seconds > currentPatch.startDate.seconds));
+  }
+  if (lastPatch) {
+    lastPatchMatches.push(
+    matches.filter(
+      match => match.date.seconds > patches[patches.length - 2].startDate.seconds
+    ).filter(
+      match => match.date.seconds < patches[patches.length - 2].endDate.seconds
+    ));
+  }
+
+  if (currentPatchMatches[0]) {
+    currentPatchMatches[0].forEach((singleCurrentMatch) => {
+      singleCurrentMatch.sets.forEach((set) => {
+        if (set.Char1 === character.id) {
+          currentPatchCharMatches.push(set)
+        }
+        if (set.Char2 === character.id) {
+          currentPatchCharMatches.push(set)
+        }
+        if (set.WChar === character.id) {
+          currentPatchCharWins.push(set)
+        }
+        currentPatchAllMatches.push(set)
+      })
+    })
+  }
+
+  if (lastPatchMatches[0]) {
+    lastPatchMatches[0].forEach((singleLastMatch) => {
+      singleLastMatch.sets.forEach((set) => {
+        if (set.Char1 === character.id) {
+          lastPatchCharMatches.push(set)
+        }
+        if (set.Char2 === character.id) {
+          lastPatchCharMatches.push(set)
+        }
+        if (set.WChar === character.id) {
+          lastPatchCharWins.push(set)
+        }
+        lastPatchAllMatches.push(set)
+      })
+    })
+  }
+
+  const currentPatchWinRate = Math.round(((currentPatchCharWins.length/currentPatchCharMatches.length) * 100 + Number.EPSILON) * 100) / 100
+  const currentPatchPlayRate = Math.round(((currentPatchCharMatches.length/currentPatchAllMatches.length) * 100 + Number.EPSILON) * 100) / 100
+  const lastPatchWinRate = Math.round(((lastPatchCharWins.length/lastPatchCharMatches.length) * 100 + Number.EPSILON) * 100) / 100
+  const lastPatchPlayRate = Math.round(((lastPatchCharMatches.length/lastPatchAllMatches.length) * 100 + Number.EPSILON) * 100) / 100
+
+  const PatchWinRateDif = Math.round(((currentPatchWinRate - lastPatchWinRate) + Number.EPSILON) * 100) / 100
+  const PatchPlayRateDif = Math.round(((currentPatchPlayRate - lastPatchPlayRate) + Number.EPSILON) * 100) / 100
+ 
   const customStyles = {
     backgroundImage: `url(${character.cut_url})`,
     backgroundSize: 'cover',
@@ -95,17 +168,50 @@ const MatchDetail = ({match}) => {
   
   return (
     <Container >
-      <div className='char-detail__top d-flex' style={customStyles}>
+      <div className='char-detail__top d-flex'>
         <Image className='char-detail__img' src={character.img}/>
-        <div className='w-100' >
-          <div className='d-flex char-detail__overlay'>
-            <h1>{character.title}</h1>
+        <div className='w-100' style={customStyles}>
+          <div className='char-detail__overlay'>
+            <h1 className='char-detai__title'>{character.title}</h1>
+            <h2 className='char-detai__jp'>{character.title_jp}</h2>
+            <Row>
+              <Col className='char-detail__stat-col'>
+                <h3>Winrate</h3>
+                <div className='d-flex justify-content-center'>
+                  <h1>{CharWinRate}%</h1>
+                  {(PatchWinRateDif < 0) ? (
+                    <h4 className='mt-3 mr-3 text-bold' style={{color: 'red'}}>
+                      {PatchWinRateDif}%
+                    </h4>
+                  ) : (
+                    <h4 className='mt-3 mr-3 text-bold' style={{color: 'green'}}>
+                      {PatchWinRateDif}%
+                    </h4>
+                  )}
+                </div>
+              </Col>
+              <Col className='char-detail__stat-col'>
+                <h3 className=''>Playrate</h3>
+                <div className='d-flex justify-content-center'>
+                  <h1>{CharPlayRate}%</h1>
+                  {(PatchPlayRateDif < 0) ? (
+                      <h4 className='mt-3 mr-3 text-bold' style={{color: 'red'}}>
+                        {PatchPlayRateDif}%
+                      </h4>
+                    ) : (
+                      <h4 className='mt-3 mr-3 text-bold' style={{color: 'green'}}>
+                        {PatchPlayRateDif}%
+                      </h4>
+                    )}
+                  </div>
+              </Col>
+            </Row>
           </div>
         </div>
       </div>
       
 
-      <h3>{CharWinRate}%</h3><h5>Total Matches: {CharMatches.length} Wins: {CharWins.length}</h5>
+      {/* <h3>{CharWinRate}%</h3><h5>Total Matches: {CharMatches.length} Wins: {CharWins.length}</h5>
 
       <Table striped bordered hover variant="dark">
         <tbody>
@@ -143,7 +249,7 @@ const MatchDetail = ({match}) => {
             ) : ('')
           )))}
         </tbody>
-      </Table>
+      </Table> */}
     </Container>
   )
 }
